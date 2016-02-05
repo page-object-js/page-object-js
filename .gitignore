@@ -1,0 +1,7 @@
+# 3rd party libraries
+/node_modules/
+/typings/
+
+# Build generated files
+/dist/
+/tmp/
