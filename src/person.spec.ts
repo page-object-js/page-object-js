@@ -1,6 +1,6 @@
-import test = require("tape");
+import * as test from  "tape";
 
-import {Person} from "./person"
+import {Person} from "./person";
 
 
 test("Person", function (t) {
