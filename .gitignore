@@ -5,6 +5,7 @@
 # Build generated files
 /dist/
 /tmp/
+/src/**/*.js
 
 # Node files
 npm-debug.log
