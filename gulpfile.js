@@ -2,7 +2,8 @@ var gulp        = require("gulp"),
     sourcemaps  = require("gulp-sourcemaps"),
     path        = require("path"),
     q           = require("q"),
-    mergeStream = require('merge-stream');
+    mergeStream = require('merge-stream'),
+    chalk       = require('chalk');
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -20,17 +21,17 @@ gulp.task(
     "usage",
     function () {
         var lines = [
-            "gulp [usage]",
+            chalk.green("gulp [usage]"),
             "    Show this usage information",
             "",
-            "gulp clean",
+            chalk.green("gulp clean"),
             "    Delete all generated files.  You must run 'npm run setup'",
             "    to setup the project once again.",
             "",
-            "gulp test",
+            chalk.green("gulp test"),
             "    Build and run the unit tests",
             "",
-            "gulp buildRelease",
+            chalk.green("gulp buildRelease"),
             "    Builds a release.",
             ""
         ];
