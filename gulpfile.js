@@ -8,10 +8,36 @@ var gulp        = require("gulp"),
 ////////////////////////////////////////////////////////////////////////////////
 // default
 ////////////////////////////////////////////////////////////////////////////////
-gulp.task("default", function () {
+gulp.task("default", ["usage"], function () {
 
 });
 
+
+////////////////////////////////////////////////////////////////////////////////
+// usage
+////////////////////////////////////////////////////////////////////////////////
+gulp.task(
+    "usage",
+    function () {
+        var lines = [
+            "gulp [usage]",
+            "    Show this usage information",
+            "",
+            "gulp clean",
+            "    Delete all generated files.  You must run 'npm run setup'",
+            "    to setup the project once again.",
+            "",
+            "gulp test",
+            "    Build and run the unit tests",
+            "",
+            "gulp buildRelease",
+            "    Builds a release.",
+            ""
+        ];
+
+        console.log(lines.join("\n"));
+    }
+);
 
 ////////////////////////////////////////////////////////////////////////////////
 // clean
