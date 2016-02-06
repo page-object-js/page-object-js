@@ -5,3 +5,6 @@
 # Build generated files
 /dist/
 /tmp/
+
+# Node files
+npm-debug.log
