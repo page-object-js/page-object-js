@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "gulp test",
-    "setup": "npm install -g tap tsd && tsd reinstall"
+    "setup": "npm install -g tap typings && typings install"
   },
   "repository": {
     "type": "git",
