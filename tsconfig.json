@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "filesGlob": [
+        "**/*.ts",
+        "**/*.tsx",
+        "!node_modules/**"
+    ],
+    "compileOnSave": true,
+    "buildOnSave": false,
+    "files": [
+        "src/index.ts",
+        "src/person.spec.ts",
+        "src/person.ts",
+        "tmp/ut/typings/index.d.ts",
+        "tmp/ut/typings/person.d.ts",
+        "tmp/ut/typings/person.spec.d.ts",
+        "typings/browser.d.ts",
+        "typings/browser/ambient/node/node.d.ts",
+        "typings/browser/ambient/tape/tape.d.ts",
+        "typings/main.d.ts",
+        "typings/main/ambient/node/node.d.ts",
+        "typings/main/ambient/tape/tape.d.ts"
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    }
+}
