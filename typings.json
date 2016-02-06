@@ -1,0 +1,6 @@
+{
+  "ambientDependencies": {
+    "tape": "github:DefinitelyTyped/DefinitelyTyped/tape/tape.d.ts#221df9ad820d0b2aa010d328c4bab06c8d69ac1f",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#221df9ad820d0b2aa010d328c4bab06c8d69ac1f"
+  }
+}
