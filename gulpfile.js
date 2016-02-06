@@ -44,6 +44,8 @@ function buildTypeScript(includeSpecs, jsOutputDir, typingsOutputDir) {
         inputTsFiles.push("!src/**/*.spec.ts");
     }
     inputTsFiles.push("typings/**/*.d.ts");
+    inputTsFiles.push("!typings/browser.d.ts");
+    inputTsFiles.push("!typings/browser/**/*");
 
     tsResults = gulp.src(inputTsFiles, {base: 'src'})
         .pipe(sourcemaps.init())
