@@ -1,12 +1,17 @@
 import test = require("tape");
 
-test(
-    "example",
-    function (t) {
+import {Person} from "./person"
+
+
+test("Person", function (t) {
+
+    t.test("welcome()", function (t) {
         t.plan(1);
 
-        setTimeout(
-            function () { t.ok(true, "true should be truthy") },
-            200
-        );
+        let person = new Person("Barney", "Rubble");
+
+        t.equal(person.welcome(),
+                "Hello, my name is Barney Rubble");
+
     });
+});

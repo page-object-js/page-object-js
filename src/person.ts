@@ -1,4 +1,4 @@
-class Person {
+export class Person {
 
     private _firstName: string;
     private _lastName: string;
@@ -13,7 +13,3 @@ class Person {
         return `Hello, my name is ${this._firstName} ${this._lastName}`;
     }
 }
-
-
-let person = new Person("Fred", "Flintstone");
-console.log(person.welcome());
