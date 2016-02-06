@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "gulp test",
-    "setup": "npm install -g tap typings && typings install"
+    "setup": "npm install -g gulp-cli typings && npm install && typings install"
   },
   "repository": {
     "type": "git",
@@ -13,21 +13,20 @@
   },
   "contributors": [
     {
-      "name":  "Kyle McKee",
+      "name": "Kyle McKee",
       "email": "mckee.kyle@gmail.com",
-      "url":   ""
+      "url": ""
     },
     {
-      "name":  "Yash Kulshrestha",
+      "name": "Yash Kulshrestha",
       "email": "yash.kulshrestha@gmail.com",
-      "url":   ""
+      "url": ""
     },
     {
-      "name":  "Kevin Peters",
+      "name": "Kevin Peters",
       "email": "kwpeters@gmail.com",
-      "url":   ""
+      "url": ""
     }
-
   ],
   "license": "MIT",
   "bugs": {
@@ -35,6 +34,7 @@
   },
   "homepage": "https://github.com/kmckee/page-object-js",
   "devDependencies": {
+    "del": "^2.2.0",
     "faucet": "0.0.1",
     "gulp": "3.9.0",
     "gulp-sourcemaps": "1.6.0",
