@@ -58,11 +58,28 @@ gulp.task(
     }
 );
 
+
+////////////////////////////////////////////////////////////////////////////////
+// tslint
+////////////////////////////////////////////////////////////////////////////////
+gulp.task(
+    "tslint", function () {
+        var tslint = require("gulp-tslint"),
+            tsSources = getTypeScriptSourceGlobs(true, false);
+
+        return gulp.src(tsSources)
+            .pipe(tslint())
+            .pipe(tslint.report("verbose"));
+    }
+);
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // buildRelease
 ////////////////////////////////////////////////////////////////////////////////
 gulp.task(
     "buildRelease",
+    ["tslint"],
     function () {
         var releaseBinDir     = path.join(__dirname, "dist"),
             releaseTypingsDir = path.join(__dirname, "dist", "typings");
@@ -75,22 +92,76 @@ gulp.task(
 );
 
 
+////////////////////////////////////////////////////////////////////////////////
+// test
+////////////////////////////////////////////////////////////////////////////////
+gulp.task(
+    "test",
+    ["tslint"],
+    function () {
+
+        var utSrcDir     = path.join(__dirname, "tmp", "ut"),
+            utTypingsDir = path.join(__dirname, "tmp", "ut", "typings");
+
+        return buildTypeScript(true, utSrcDir, utTypingsDir)
+            .then(function () {
+                var tape   = require("gulp-tape"),
+                    faucet = require("faucet"),
+                    stream;
+
+                stream = gulp.src(utSrcDir + "/**/*.spec.js")
+                    .pipe(tape({reporter: faucet()}));
+
+                return streamToPromise(stream);
+            });
+    }
+);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Helper Functions
+////////////////////////////////////////////////////////////////////////////////
+
+function streamToPromise(stream) {
+    var dfd = q.defer();
+
+    stream.once("error", function (err) {
+        dfd.reject(err);
+    });
+
+    stream.once("end", function () {
+        dfd.resolve();
+    });
+
+    return dfd.promise;
+}
+
+
+function getTypeScriptSourceGlobs(includeSpecs, includeTypings) {
+    var tsSources = ["src/**/*.ts"];
+
+    if (!includeSpecs) {
+        tsSources.push("!src/**/*.spec.ts");
+    }
+
+    if (includeTypings) {
+        tsSources.push("typings/**/*.d.ts");
+        tsSources.push("!typings/browser.d.ts");
+        tsSources.push("!typings/browser/**/*");
+    }
+
+    return tsSources;
+
+}
+
+
 function buildTypeScript(includeSpecs, jsOutputDir, typingsOutputDir) {
     var ts           = require('gulp-typescript'),
         tsHelpers    = require('gulpTsHelpers'),
-        inputTsFiles = [],
+        inputTsFiles = getTypeScriptSourceGlobs(includeSpecs, true),
         tsResults,
         merged,
         tsPromise;
-
-    // Build an array of ts files to compile.
-    inputTsFiles.push("src/**/*.ts");
-    if (!includeSpecs) {
-        inputTsFiles.push("!src/**/*.spec.ts");
-    }
-    inputTsFiles.push("typings/**/*.d.ts");
-    inputTsFiles.push("!typings/browser.d.ts");
-    inputTsFiles.push("!typings/browser/**/*");
 
     tsResults = gulp.src(inputTsFiles, {base: 'src'})
         .pipe(sourcemaps.init())
@@ -112,43 +183,4 @@ function buildTypeScript(includeSpecs, jsOutputDir, typingsOutputDir) {
 
     tsPromise = tsHelpers.processTsResults(tsResults, merged);
     return tsPromise;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// test
-////////////////////////////////////////////////////////////////////////////////
-gulp.task(
-    "test",
-    function () {
-
-        var utSrcDir     = path.join(__dirname, "tmp", "ut"),
-            utTypingsDir = path.join(__dirname, "tmp", "ut", "typings");
-
-        return buildTypeScript(true, utSrcDir, utTypingsDir)
-            .then(function () {
-                var tape   = require("gulp-tape"),
-                    faucet = require("faucet"),
-                    stream;
-
-                stream = gulp.src(utSrcDir + "/**/*.spec.js")
-                    .pipe(tape({reporter: faucet()}));
-
-                return streamToPromise(stream);
-            });
-    }
-);
-
-
-function streamToPromise(stream) {
-    var dfd = q.defer();
-
-    stream.once("error", function (err) {
-        dfd.reject(err);
-    });
-
-    stream.once("end", function () {
-        dfd.resolve();
-    });
-
-    return dfd.promise;
 }

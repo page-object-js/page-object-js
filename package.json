@@ -34,18 +34,21 @@
   },
   "homepage": "https://github.com/kmckee/page-object-js",
   "devDependencies": {
+    "chalk": "^1.1.1",
     "del": "^2.2.0",
     "faucet": "0.0.1",
     "gulp": "3.9.0",
     "gulp-sourcemaps": "1.6.0",
     "gulp-tape": "0.0.7",
+    "gulp-tslint": "^4.3.1",
     "gulp-typescript": "2.10.0",
     "gulpTsHelpers": "kwpeters/gulpTsHelpers#30447c7",
     "merge-stream": "1.0.0",
     "q": "1.4.1",
-    "tape": "4.4.0"
+    "tape": "4.4.0",
+    "tslint": "^3.3.0",
+    "typescript": "^1.7.5"
   },
   "dependencies": {
-    "chalk": "^1.1.1"
   }
 }

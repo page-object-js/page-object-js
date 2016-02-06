@@ -1,14 +1,12 @@
 import * as test from  "tape";
-
 import {Person} from "./person";
 
+test("Person",  function (t: test.Test):void {
 
-test("Person", function (t) {
-
-    t.test("welcome()", function (t) {
+    t.test("welcome()", function (t: test.Test):void {
         t.plan(1);
 
-        let person = new Person("Barney", "Rubble");
+        let person:Person = new Person("Barney", "Rubble");
 
         t.equal(person.welcome(),
                 "Hello, my name is Barney Rubble");
