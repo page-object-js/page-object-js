@@ -47,11 +47,11 @@
     "merge-stream": "1.0.0",
     "node-static": "^0.7.7",
     "q": "1.4.1",
+    "selenium-webdriver": "^2.48.2",
     "server-destroy": "^1.0.1",
     "tape": "4.4.0",
     "tslint": "^3.3.0",
-    "typescript": "^1.7.5",
-    "zombie": "^4.2.1"
+    "typescript": "^1.7.5"
   },
   "dependencies": {}
 }

@@ -1,8 +1,11 @@
-var zombie = require('zombie');
-function World() {
-  this.browser = new zombie(); // this.browser will be available in step definitions
-}
+var webdriver = require('selenium-webdriver'),
+    chrome = require('selenium-webdriver/chrome');
+
+var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .setChromeOptions(/* ... */)
+    .build();
 
 module.exports = function() {
-  this.World = World;
+    this.World.prototype.browser = driver;
 };

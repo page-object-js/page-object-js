@@ -127,15 +127,21 @@ gulp.task(
 ////////////////////////////////////////////////////////////////////////////////
 gulp.task(
     "cukes",
-    function () {
+    function (done) {
         var destroyServer = startServer(path.join(__dirname, "features", "sample_pages"));
 
-        return gulp.src('features/*')
+        setTimeout(function() {
+            gulp.src('features/*')
             .pipe(cucumber({
-                'steps': 'features/step_definitions/*.js',
+                'steps': 'features/step-definitions/*.js',
+                'support': 'features/support/*.js',
                 'format': 'pretty'
             }))
-            .on('end', destroyServer);
+            .on('end', function() {
+                destroyServer();
+                done();
+            });
+        }, 1000)
     }
 );
 
