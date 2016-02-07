@@ -22,7 +22,7 @@
     "compileOnSave": true,
     "buildOnSave": false,
     "files": [
-        "features/step_definitions/steps.ts",
+        "features/step-definitions/steps.ts",
         "features/support/world.ts",
         "src/index.ts",
         "src/person.spec.ts",
