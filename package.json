@@ -38,6 +38,7 @@
     "del": "^2.2.0",
     "faucet": "0.0.1",
     "gulp": "3.9.0",
+    "gulp-cucumber": "0.0.15",
     "gulp-sourcemaps": "1.6.0",
     "gulp-tape": "0.0.7",
     "gulp-tslint": "^4.3.1",

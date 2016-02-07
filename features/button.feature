@@ -2,7 +2,7 @@ Feature: Button
     So that I can automate web applications with buttons,
     I want to have a button element available
 
-    Scenario: Exists
+    Scenario: Exist and Not Exist
         When I am viewing the sample login page
-        Then a button with an id of "SignIn" should exist
-        But a button with an id of "NotAThing" should not exist
+        Then a SignUp button should exist
+        But a Foo button should not exist

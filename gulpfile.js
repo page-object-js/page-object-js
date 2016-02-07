@@ -3,7 +3,8 @@ var gulp        = require("gulp"),
     path        = require("path"),
     q           = require("q"),
     mergeStream = require('merge-stream'),
-    chalk       = require('chalk');
+    chalk       = require('chalk'),
+    cucumber    = require('gulp-cucumber');
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +34,9 @@ gulp.task(
             "",
             chalk.green("gulp buildRelease"),
             "    Builds a release.",
+            "",
+            chalk.green("gulp cukes"),
+            "    Starts the sample server and runs the cukes.",
             ""
         ];
 
@@ -119,24 +123,19 @@ gulp.task(
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// wdTest
+// cukes
 ////////////////////////////////////////////////////////////////////////////////
 gulp.task(
-    "wdTest",
-    function (done) {
+    "cukes",
+    function () {
+        var destroyServer = startServer(path.join(__dirname, "features", "sample_pages"));
 
-        var destroyServer = startServer(path.join(__dirname, "test", "pages"));
-
-        //
-        // todo: Replace the following artificial delay with execution of the
-        // webdriver tests.  Call destroyServer() and done() when finished.
-        //
-
-        setTimeout(function () {
-            destroyServer();
-            done();
-        }, 10*1000);
-
+        return gulp.src('features/*')
+            .pipe(cucumber({
+                'steps': 'features/step_definitions/*.js',
+                'format': 'pretty'
+            }))
+            .on('end', destroyServer);
     }
 );
 
@@ -229,8 +228,9 @@ function startServer(directory, port) {
         }).resume();
     });
 
-    server.listen(3000);
+    server.listen(port);
     enableDestroy(server);
+    console.log('Serving running on port:', port)
 
     return server.destroy;
 }
