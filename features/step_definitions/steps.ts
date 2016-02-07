@@ -1,24 +1,16 @@
 module.exports = function () {
-    this.When(/^I am viewing the sample login page$/, function (done) {
-        // visit(SampleSignupPage);  // Eventually, we want something like this.
-        this.browser.visit('http://localhost:4567/sample_page.html', done);
-    });
-
-    this.Then(/^a SignUp button should exist$/, function (callback) {
-        /* Eventually, we want something like this:
-        return on(SampleSignupPage).then(function (page) {
-            expect(page.signup.present).toBe(true);
-        });
-        */
+    this.When(/^I am viewing the sample login page$/, function (callback) {
+        // Write code here that turns the phrase above into concrete actions
         callback.pending();
     });
 
-    this.Then(/^a Foo button should not exist$/, function (callback) {
-        /* Eventually, we want something like this:
-        return on(SampleSignupPage).then(function (page) {
-            expect(page.foo.present).toBe(false);
-        });
-        */
+    this.Then(/^a button with an id of "([^"]*)" should exist$/, function (arg1, callback) {
+        // Write code here that turns the phrase above into concrete actions
+        callback.pending();
+    });
+
+    this.Then(/^a button with an id of "([^"]*)" should not exist$/, function (arg1, callback) {
+        // Write code here that turns the phrase above into concrete actions
         callback.pending();
     });
 };
