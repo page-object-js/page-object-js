@@ -1,7 +1,8 @@
-var webdriverio = require('webdriverio');
-var options = { desiredCapabilities: { browserName: 'chrome' } };
-var client = webdriverio.remote(options).init();
+var zombie = require('zombie');
+function World() {
+  this.browser = new zombie(); // this.browser will be available in step definitions
+}
 
 module.exports = function() {
-    this.World.prototype.browser = client;
+  this.World = World;
 };

@@ -4,8 +4,7 @@ var gulp        = require("gulp"),
     q           = require("q"),
     mergeStream = require('merge-stream'),
     chalk       = require('chalk'),
-    cucumber    = require('gulp-cucumber'),
-    webdriver   = require('gulp-webdriver');
+    cucumber    = require('gulp-cucumber');
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -134,20 +133,11 @@ gulp.task(
         return gulp.src('features/*')
             .pipe(cucumber({
                 'steps': 'features/step_definitions/*.js',
-                'support': 'features/support/*.js',
                 'format': 'pretty'
             }))
             .on('end', destroyServer);
     }
 );
-
-gulp.task('test:e2e', function() {
-    return gulp.src('wdio.conf.js').pipe(webdriver({
-        logLevel: 'verbose',
-        waitforTimeout: 10000,
-        reporter: 'spec'
-    }));
-});
 
 
 ////////////////////////////////////////////////////////////////////////////////
