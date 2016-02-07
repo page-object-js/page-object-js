@@ -44,11 +44,12 @@
     "gulp-typescript": "2.10.0",
     "gulpTsHelpers": "kwpeters/gulpTsHelpers#30447c7",
     "merge-stream": "1.0.0",
+    "node-static": "^0.7.7",
     "q": "1.4.1",
+    "server-destroy": "^1.0.1",
     "tape": "4.4.0",
     "tslint": "^3.3.0",
     "typescript": "^1.7.5"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

@@ -28,7 +28,7 @@ gulp.task(
             "    Delete all generated files.  You must run 'npm run setup'",
             "    to setup the project once again.",
             "",
-            chalk.green("gulp test"),
+            chalk.green("gulp ut"),
             "    Build and run the unit tests",
             "",
             chalk.green("gulp buildRelease"),
@@ -93,10 +93,10 @@ gulp.task(
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test
+// ut
 ////////////////////////////////////////////////////////////////////////////////
 gulp.task(
-    "test",
+    "ut",
     ["tslint"],
     function () {
 
@@ -114,6 +114,29 @@ gulp.task(
 
                 return streamToPromise(stream);
             });
+    }
+);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// wdTest
+////////////////////////////////////////////////////////////////////////////////
+gulp.task(
+    "wdTest",
+    function (done) {
+
+        var destroyServer = startServer(path.join(__dirname, "test", "pages"));
+
+        //
+        // todo: Replace the following artificial delay with execution of the
+        // webdriver tests.  Call destroyServer() and done() when finished.
+        //
+
+        setTimeout(function () {
+            destroyServer();
+            done();
+        }, 10*1000);
+
     }
 );
 
@@ -183,4 +206,31 @@ function buildTypeScript(includeSpecs, jsOutputDir, typingsOutputDir) {
 
     tsPromise = tsHelpers.processTsResults(tsResults, merged);
     return tsPromise;
+}
+
+
+//
+// Starts a static file server for the specified directory on the specified port.
+// Returns a function that should be called (with no arguments) when the server
+// should be destroyed.
+//
+function startServer(directory, port) {
+    var staticSrv = require("node-static"),
+        enableDestroy = require("server-destroy"),
+        fileServer = new staticSrv.Server(directory),
+        server;
+
+    // If not provided, use a default port of 3000.
+    port = port || 3000;
+
+    server = require('http').createServer(function (request, response) {
+        request.addListener('end', function () {
+            fileServer.serve(request, response);
+        }).resume();
+    });
+
+    server.listen(3000);
+    enableDestroy(server);
+
+    return server.destroy;
 }
