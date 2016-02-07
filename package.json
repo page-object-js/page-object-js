@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "gulp test",
-    "setup": "npm install -g gulp-cli typings && npm install && typings install"
+    "setup": "npm install -g gulp-cli typings cucumber && npm install && typings install"
   },
   "repository": {
     "type": "git",
@@ -49,7 +49,8 @@
     "server-destroy": "^1.0.1",
     "tape": "4.4.0",
     "tslint": "^3.3.0",
-    "typescript": "^1.7.5"
+    "typescript": "^1.7.5",
+    "zombie": "^4.2.1"
   },
   "dependencies": {}
 }

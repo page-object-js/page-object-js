@@ -6,6 +6,7 @@
 /dist/
 /tmp/
 /src/**/*.js
+/features/**/*.js
 
 # Node files
 npm-debug.log
