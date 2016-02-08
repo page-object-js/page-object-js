@@ -168,9 +168,8 @@ function getTypeScriptSourceGlobs(includeSpecs, includeTypings) {
     }
 
     if (includeTypings) {
-        tsSources.push("typings/**/*.d.ts");
-        tsSources.push("!typings/browser.d.ts");
-        tsSources.push("!typings/browser/**/*");
+        tsSources.push("typings/main.d.ts");
+        tsSources.push("typings/main/**/*.d.ts");
     }
 
     return tsSources;
