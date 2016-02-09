@@ -4,4 +4,33 @@
 //
 // require("page-object-js");
 
-// todo: Figure out what should be exported from this file
+// I think we want to export:
+// visit, on, setBrowser               <= Functions
+// IBasePage                           <= Base type for pages
+// All the web element types           <= TextField, Button, Div, etc Types
+//import {Promise} from 'es6-promise';
+
+export interface IBasePage {
+    url: string;
+}
+
+export function on<T extends IBasePage>(ctor: {new(): T}): Promise<T> {
+    const instance = new ctor();
+    return new Promise(instance);
+};
+
+// export function visit<T extends IBasePage>(ctor: {new(): T}): Promise<T> {
+//     const instance = new ctor();
+//     return browser.get(instance.url)
+//                   .then(() => { return instance; });
+// };
+
+//What we want from the outside
+// class SamplePage implements IBasePage {
+//     public url: string = 'http://www.google.com';
+// }
+
+// visit(SamplePage).then((page) => {
+//     page.username.text = 'Kyle';
+//     page.submit.click();
+// });
