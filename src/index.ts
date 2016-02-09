@@ -19,6 +19,14 @@ export function on<T extends IBasePage>(ctor: {new(): T}): T {
     return instance;
 }
 
+export function setBrowser(browser: any) {
+    GLOBAL.browser = browser;
+}
+
+export function getBrowser() {
+    return GLOBAL.browser;
+}
+
 // export function visit<T extends IBasePage>(ctor: {new(): T}): Promise<T> {
 //     const instance = new ctor();
 //     return browser.get(instance.url)
