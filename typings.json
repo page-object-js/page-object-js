@@ -5,5 +5,6 @@
     "tape": "github:DefinitelyTyped/DefinitelyTyped/tape/tape.d.ts#221df9ad820d0b2aa010d328c4bab06c8d69ac1f"
   },
   "dependencies": {
+    "es6-promise": "github:typings/typed-es6-promise#94aac67ef7a14a8de8e9e1d3c1f9a26caa0d9fb1"
   }
 }

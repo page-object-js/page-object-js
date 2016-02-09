@@ -8,16 +8,21 @@
 // visit, on, setBrowser               <= Functions
 // IBasePage                           <= Base type for pages
 // All the web element types           <= TextField, Button, Div, etc Types
-//import {Promise} from 'es6-promise';
+import {Promise} from "es6-promise";
 
 export interface IBasePage {
     url: string;
 }
 
 export function on<T extends IBasePage>(ctor: {new(): T}): Promise<T> {
-    const instance = new ctor();
-    return new Promise(instance);
-};
+    "use strict";
+    const instance: T = new ctor();
+    return new Promise<T>(
+        (resolve: (val: T) => void, reject: (err: any) => void) => {
+            resolve(instance);
+        }
+    );
+}
 
 // export function visit<T extends IBasePage>(ctor: {new(): T}): Promise<T> {
 //     const instance = new ctor();
