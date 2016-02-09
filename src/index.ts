@@ -8,20 +8,15 @@
 // visit, on, setBrowser               <= Functions
 // IBasePage                           <= Base type for pages
 // All the web element types           <= TextField, Button, Div, etc Types
-import {Promise} from "es6-promise";
 
 export interface IBasePage {
     url: string;
 }
 
-export function on<T extends IBasePage>(ctor: {new(): T}): Promise<T> {
+export function on<T extends IBasePage>(ctor: {new(): T}): T {
     "use strict";
-    const instance: T = new ctor();
-    return new Promise<T>(
-        (resolve: (val: T) => void, reject: (err: any) => void) => {
-            resolve(instance);
-        }
-    );
+    const instance: T = new ctor();  // <== Pass in the browser here?  Or do all elements get it.
+    return instance;
 }
 
 // export function visit<T extends IBasePage>(ctor: {new(): T}): Promise<T> {

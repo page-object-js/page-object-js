@@ -22,6 +22,7 @@
     "compileOnSave": true,
     "buildOnSave": false,
     "files": [
+        "features/pages/SignupFormPage.ts",
         "features/step-definitions/steps.ts",
         "features/support/world.ts",
         "src/index.ts",
@@ -32,10 +33,14 @@
         "tmp/ut/typings/person.spec.d.ts",
         "typings/browser.d.ts",
         "typings/browser/ambient/node/node.d.ts",
+        "typings/browser/ambient/selenium-webdriver/selenium-webdriver.d.ts",
         "typings/browser/ambient/tape/tape.d.ts",
+        "typings/browser/definitions/es6-promise/es6-promise.d.ts",
         "typings/main.d.ts",
         "typings/main/ambient/node/node.d.ts",
-        "typings/main/ambient/tape/tape.d.ts"
+        "typings/main/ambient/selenium-webdriver/selenium-webdriver.d.ts",
+        "typings/main/ambient/tape/tape.d.ts",
+        "typings/main/definitions/es6-promise/es6-promise.d.ts"
     ],
     "atom": {
         "rewriteTsconfig": true
