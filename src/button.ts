@@ -1,5 +1,5 @@
 
-import {getBrowser} from './index'
+import {getBrowser} from './index';
 const   By      = require('selenium-webdriver').By;
 
 export class Button {
