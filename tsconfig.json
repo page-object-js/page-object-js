@@ -25,6 +25,7 @@
         "features/pages/SignupFormPage.ts",
         "features/step-definitions/steps.ts",
         "features/support/world.ts",
+        "src/button.ts",
         "src/index.ts",
         "src/person.spec.ts",
         "src/person.ts",

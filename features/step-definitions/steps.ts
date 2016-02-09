@@ -31,5 +31,7 @@ module.exports = function () {
             expect(val).to.equal(false);
             done();
         });
+        // This should not be so complicated.  Want to get to this:
+        //expect(on(SignupFormPage).foo.visible).to.equal(false);
     });
 };
