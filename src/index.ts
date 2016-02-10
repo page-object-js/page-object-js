@@ -14,16 +14,24 @@
 // }
 //
  export function on<T>(ctor: {new(): T}): T {
+     "use strict";
      const instance: T = new ctor();
      return instance;
 }
 
-export function setBrowser(browser: any) {
-    GLOBAL.browser = browser;
+// todo: Add a type for the following module scoped variable.
+let theBrowser: any;
+
+// todo: Add a type for the browser parameter
+export function setBrowser(browser: any): void {
+    "use strict";
+    theBrowser = browser;
 }
 
-export function getBrowser() {
-    return GLOBAL.browser;
+// todo: Add a type for the returned value.
+export function getBrowser(): any {
+    "use strict";
+    return theBrowser;
 }
 
-export {Button} from './button'
+export {Button} from "./button"

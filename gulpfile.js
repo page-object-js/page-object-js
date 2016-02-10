@@ -79,19 +79,15 @@ gulp.task(
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// buildRelease
+// build
 ////////////////////////////////////////////////////////////////////////////////
 gulp.task(
-    "buildRelease",
+    "build",
     ["tslint"],
     function () {
-        var releaseBinDir     = path.join(__dirname, "dist"),
-            releaseTypingsDir = path.join(__dirname, "dist", "typings");
+        var outputDir = path.join(__dirname, "dist");
 
-        return buildTypeScript(
-            false,
-            releaseBinDir,
-            releaseTypingsDir);
+        return buildTypeScript(false, outputDir, outputDir);
     }
 );
 

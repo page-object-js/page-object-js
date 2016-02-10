@@ -1,6 +1,8 @@
 
-import {getBrowser} from './index';
-const   By      = require('selenium-webdriver').By;
+import {getBrowser} from "./index";
+//const   By      = require('selenium-webdriver').By;
+import * as selwd from "selenium-webdriver";
+const by: typeof selwd.By = selwd.By;
 
 export class Button {
     private _locator: any;
@@ -8,7 +10,7 @@ export class Button {
         this._locator = locator;
     }
     get visible(): any {
-        return getBrowser().isElementPresent(By.id(this._locator.id));  //<== De-promisify
+        return getBrowser().isElementPresent(by.id(this._locator.id));  //<== De-promisify
     }
 }
 
