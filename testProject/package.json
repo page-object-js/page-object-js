@@ -7,5 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "3.9.0",
+    "gulp-cucumber": "0.0.15",
+    "gulp-tslint": "^4.3.1",
+    "gulpTsHelpers": "kwpeters/gulpTsHelpers#30447c7",
+    "node-static": "^0.7.7",
+    "q": "1.4.1",
+    "server-destroy": "^1.0.1"
+  }
 }

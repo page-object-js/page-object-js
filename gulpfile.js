@@ -1,10 +1,9 @@
 var gulp        = require("gulp"),
+    gulpHelpers = require("./gulpHelpers/gulpHelpers"),
     sourcemaps  = require("gulp-sourcemaps"),
     path        = require("path"),
     q           = require("q"),
-    mergeStream = require('merge-stream'),
-    chalk       = require('chalk'),
-    cucumber    = require('gulp-cucumber');
+    chalk       = require('chalk');
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -87,7 +86,8 @@ gulp.task(
     function () {
         var outputDir = path.join(__dirname, "dist");
 
-        return buildTypeScript(false, outputDir, outputDir);
+        return gulpHelpers.buildTypeScript(
+            getTypeScriptSourceGlobs(false, true), outputDir, outputDir);
     }
 );
 
@@ -100,19 +100,19 @@ gulp.task(
     ["tslint"],
     function () {
 
-        var utSrcDir     = path.join(__dirname, "tmp", "ut"),
-            utTypingsDir = path.join(__dirname, "tmp", "ut", "typings");
+        var outDir     = path.join(__dirname, "tmp", "ut");
 
-        return buildTypeScript(true, utSrcDir, utTypingsDir)
+        return gulpHelpers.buildTypeScript(
+            getTypeScriptSourceGlobs(true, true), outDir, outDir)
             .then(function () {
                 var tape   = require("gulp-tape"),
                     faucet = require("faucet"),
                     stream;
 
-                stream = gulp.src(utSrcDir + "/**/*.spec.js")
+                stream = gulp.src(outDir + "/**/*.spec.js")
                     .pipe(tape({reporter: faucet()}));
 
-                return streamToPromise(stream);
+                return gulpHelpers.streamToPromise(stream);
             });
     }
 );
@@ -123,21 +123,12 @@ gulp.task(
 ////////////////////////////////////////////////////////////////////////////////
 gulp.task(
     "cukes",
-    function (done) {
-        var destroyServer = startServer(path.join(__dirname, "features", "sample_pages"));
+    function () {
 
-        setTimeout(function() {
-            gulp.src('features/*')
-            .pipe(cucumber({
-                'steps': 'features/step-definitions/*.js',
-                'support': 'features/support/*.js',
-                'format': 'pretty'
-            }))
-            .on('end', function() {
-                destroyServer();
-                done();
-            });
-        }, 1000)
+        // todo:  Copy dist folders into testProject as if they were installed
+        // using npm.
+
+        // todo:  Invoke testProject's cukes Gulp task.
     }
 );
 
@@ -145,21 +136,6 @@ gulp.task(
 ////////////////////////////////////////////////////////////////////////////////
 // Helper Functions
 ////////////////////////////////////////////////////////////////////////////////
-
-function streamToPromise(stream) {
-    var dfd = q.defer();
-
-    stream.once("error", function (err) {
-        dfd.reject(err);
-    });
-
-    stream.once("end", function () {
-        dfd.resolve();
-    });
-
-    return dfd.promise;
-}
-
 
 function getTypeScriptSourceGlobs(includeSpecs, includeTypings) {
     var tsSources = ["src/**/*.ts"];
@@ -175,63 +151,4 @@ function getTypeScriptSourceGlobs(includeSpecs, includeTypings) {
 
     return tsSources;
 
-}
-
-
-function buildTypeScript(includeSpecs, jsOutputDir, typingsOutputDir) {
-    var ts           = require('gulp-typescript'),
-        tsHelpers    = require('gulpTsHelpers'),
-        inputTsFiles = getTypeScriptSourceGlobs(includeSpecs, true),
-        tsResults,
-        merged,
-        tsPromise;
-
-    tsResults = gulp.src(inputTsFiles, {base: 'src'})
-        .pipe(sourcemaps.init())
-        .pipe(ts({
-                target:            'ES5',
-                declarationFiles:  true,
-                noExternalResolve: true,
-                noEmitOnError:     true,
-                module:            'commonjs'
-            },
-            undefined,
-            ts.reporter.longReporter()));
-
-    merged = mergeStream(
-        tsResults.dts.pipe(gulp.dest(typingsOutputDir)),
-        tsResults.js.pipe(sourcemaps.write())
-            .pipe(gulp.dest(jsOutputDir))
-    );
-
-    tsPromise = tsHelpers.processTsResults(tsResults, merged);
-    return tsPromise;
-}
-
-
-//
-// Starts a static file server for the specified directory on the specified port.
-// Returns a function that should be called (with no arguments) when the server
-// should be destroyed.
-//
-function startServer(directory, port) {
-    var staticSrv = require("node-static"),
-        enableDestroy = require("server-destroy"),
-        fileServer = new staticSrv.Server(directory),
-        server;
-
-    // If not provided, use a default port of 3000.
-    port = port || 3000;
-
-    server = require('http').createServer(function (request, response) {
-        request.addListener('end', function () {
-            fileServer.serve(request, response);
-        }).resume();
-    });
-
-    server.listen(port);
-    enableDestroy(server);
-    console.log('Serving running on port:', port)
-
-    return server.destroy;
 }
