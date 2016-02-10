@@ -4,7 +4,7 @@
   "description": "A Node.js implementation of the PageObject pattern",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test",
+    "test": "gulp ut",
     "setup": "npm install -g gulp-cli typings cucumber && npm install && typings install"
   },
   "repository": {
