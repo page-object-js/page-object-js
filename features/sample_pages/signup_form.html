@@ -5,7 +5,7 @@
     <title>Page A</title>
     <script>
         function onSubmit() {
-            var element         = document.getElementById('submitCount'),
+            var element         = document.getElementById('submit-count'),
                 existingContent = element.innerHTML;
             element.innerHTML = parseInt(existingContent) + 1;
         }
@@ -31,7 +31,7 @@
         <input id="sign-up" type="button" value="Submit" onclick="onSubmit()"/>
     </form>
     <div>
-        Clicked: <span id="submitCount">0</span>
+        Clicked: <span id="submit-count">0</span>
     </div>
 </body>
 </html>

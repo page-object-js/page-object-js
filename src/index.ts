@@ -21,3 +21,4 @@
 
 export {getBrowser, setBrowser} from "./browser";
 export {Button} from "./button";
+export {Span} from "./span";

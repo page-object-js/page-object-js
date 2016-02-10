@@ -37,4 +37,11 @@ module.exports = function () {
             done();
         });
     });
+
+    this.Then(/^I should see a submit count of (\d+)$/, function (expected, done) {
+        on(SignupFormPage).submitCount.text.then(function(val) {
+            expect(val).to.equal(expected);
+            done();
+        });
+    });
 };
