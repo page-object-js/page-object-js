@@ -5,8 +5,10 @@
 # Build generated files
 /dist/
 /tmp/
-/src/**/*.js
-/features/**/*.js
+/testProject/node_modules/
+/testProject/typings
 
-# Node files
-npm-debug.log
+# Files that are created by overzealous editors that think they are smart enough to
+# build a project when in actuality they know nothing at all.
+/src/**/*.js
+/testProject/features/**/*.js
