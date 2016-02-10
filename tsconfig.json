@@ -24,7 +24,9 @@
     "files": [
         "features/pages/SignupFormPage.ts",
         "features/step-definitions/steps.ts",
+        "features/support/hooks.ts",
         "features/support/world.ts",
+        "src/browser.ts",
         "src/button.ts",
         "src/index.ts",
         "src/person.spec.ts",
