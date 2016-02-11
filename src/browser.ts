@@ -1,14 +1,16 @@
 // todo: Add a type for the following module scoped variable.
-let theBrowser: any;
+import { WebDriver } from 'selenium-webdriver';
+
+let theBrowser: WebDriver;
 
 // todo: Add a type for the browser parameter
-export function setBrowser(browser: any): void {
+export function setBrowser(browser: WebDriver): void {
     "use strict";
     theBrowser = browser;
 }
 
 // todo: Add a type for the returned value.
-export function getBrowser(): any {
+export function getBrowser(): WebDriver {
     "use strict";
     return theBrowser;
 }
