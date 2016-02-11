@@ -12,6 +12,9 @@ export class Button {
     get visible(): any {
         return getBrowser().isElementPresent(by.id(this._locator.id));  //<== De-promisify
     }
+    get isEnabled(): any /*Promise<boolean>*/ {
+        return getBrowser().findElement(by.id(this._locator.id)).isEnabled();
+    }
 }
 
 //Other thoughts:
