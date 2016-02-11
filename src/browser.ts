@@ -1,5 +1,5 @@
 // todo: Add a type for the following module scoped variable.
-import { WebDriver } from 'selenium-webdriver';
+import { WebDriver } from "selenium-webdriver";
 
 let theBrowser: WebDriver;
 
