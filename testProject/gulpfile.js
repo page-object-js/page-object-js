@@ -38,8 +38,8 @@ gulp.task("cukes", ["build"], function () {
 
                 var cukeStream = gulp.src('features/*')
                     .pipe(cucumber({
-                        'steps':   'features/step-definitions/*.js',
-                        'support': 'features/support/*.js',
+                        'steps':   'dist/features/step-definitions/**/*.js',
+                        'support': 'dist/features/support/**/*.js',
                         'format':  'pretty'
                     }));
 
