@@ -1,4 +1,4 @@
-import {Button, Span} from 'page-object-js'
+import {Button, Span} from 'page-object-js';
 
 export class SignupFormPage {
     public signUp:  Button = new Button({id: 'sign-up'});

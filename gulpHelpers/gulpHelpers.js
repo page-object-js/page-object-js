@@ -36,7 +36,7 @@ module.exports.buildTypeScript = function buildTypeScript(srcGlobs, jsOutputDir,
         .pipe(ts({
                 target:            'ES5',
                 declarationFiles:  true,
-                noExternalResolve: true,
+                noExternalResolve: false,
                 noEmitOnError:     true,
                 module:            'commonjs'
             },

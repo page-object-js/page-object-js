@@ -1,10 +1,21 @@
-const   By      = require('selenium-webdriver').By,
-        expect  = require('chai').expect;
+/// <reference path="../../typings/main.d.ts" />
+
+import * as chai from "chai";
+const expect = chai.expect;
+
+//const   By      = require('selenium-webdriver').By,
+//expect  = require('chai').expect;
+
+
+
+
 
 import {SignupFormPage} from '../pages/SignupFormPage';
-import {on} from '../../src/index';
+//import {on} from '../../src/index';
+import {on} from "page-object-js";
 
-module.exports = function () {
+//module.exports = function () {
+export = function () {
     this.When(/^I am viewing the sample login page$/, function () {
         this.browser.get('http://localhost:3000/signup_form.html');
         // This should not be so complicated.  Want to get to this:

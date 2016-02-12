@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A Node.js implementation of the PageObject pattern",
   "main": "dist/index.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "test": "gulp ut",
     "setup": "npm install -g gulp-cli typings cucumber && npm install && typings install"
