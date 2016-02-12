@@ -1,12 +1,14 @@
 # 3rd party libraries
 /node_modules/
 /typings/
+/testProject/node_modules/
+/testProject/typings
 
 # Build generated files
 /dist/
 /tmp/
-/testProject/node_modules/
-/testProject/typings
+/testProject/dist/
+/testProject/tmp/
 
 # Files that are created by overzealous editors that think they are smart enough to
 # build a project when in actuality they know nothing at all.
