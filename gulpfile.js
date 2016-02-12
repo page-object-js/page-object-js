@@ -171,7 +171,9 @@ function getTypeScriptSourceGlobs(includeSpecs, includeTypings) {
 
 }
 
-// Just like Node's child_process.exec(), but returns a promise.  The promise is
+// Just like Node's child_process.exec(), but returns a promise.  The promise is is
+// fulfilled (with stdout) when the process exits successfully.  The promise is reject
+// with an Error object otherwise.
 function exec(command, options) {
     var exec = require("child_process").exec,
         child,
@@ -183,7 +185,7 @@ function exec(command, options) {
             return;
         }
 
-        dfd.resolve();
+        dfd.resolve(stdout);
     });
 
     return dfd.promise;
