@@ -123,12 +123,30 @@ gulp.task(
 ////////////////////////////////////////////////////////////////////////////////
 gulp.task(
     "cukes",
+    ["build"],
     function () {
 
-        // todo:  Copy dist folders into testProject as if they were installed
-        // using npm.
+        var fs = require("node-fs-extra");
 
-        // todo:  Invoke testProject's cukes Gulp task.
+        //
+        // Copy dist folders into testProject as if they were installed
+        // using npm.
+        //
+        fs.remove("testProject/node_modules/page-object-js");
+        fs.copySync("dist", "testProject/node_modules/page-object-js/dist");
+        fs.copySync("package.json",
+            "testProject/node_modules/page-object-js/package.json");
+
+        //
+        // Invoke testProject's cuke task.
+        //
+        return exec(
+            "gulp cukes",
+            {cwd: path.join(__dirname, "testProject")}
+        );
+
+
+
     }
 );
 
@@ -150,5 +168,24 @@ function getTypeScriptSourceGlobs(includeSpecs, includeTypings) {
     }
 
     return tsSources;
+
+}
+
+// Just like Node's child_process.exec(), but returns a promise.  The promise is
+function exec(command, options) {
+    var exec = require("child_process").exec,
+        child,
+        dfd = q.defer();
+
+    exec(command, options, function (err, stdout, stderr) {
+        if (err) {
+            dfd.reject(err);
+            return;
+        }
+
+        dfd.resolve();
+    });
+
+    return dfd.promise;
 
 }

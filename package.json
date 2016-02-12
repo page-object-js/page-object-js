@@ -2,7 +2,7 @@
   "name": "page-object-js",
   "version": "1.0.0",
   "description": "A Node.js implementation of the PageObject pattern",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "gulp ut",
     "setup": "npm install -g gulp-cli typings cucumber && npm install && typings install"
@@ -45,6 +45,7 @@
     "gulp-typescript": "2.10.0",
     "gulpTsHelpers": "kwpeters/gulpTsHelpers#30447c7",
     "merge-stream": "1.0.0",
+    "node-fs-extra": "^0.8.1",
     "q": "1.4.1",
     "tape": "4.4.0",
     "tslint": "^3.3.0",
