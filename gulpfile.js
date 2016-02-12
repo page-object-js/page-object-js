@@ -10,7 +10,6 @@ var gulp        = require("gulp"),
 // default
 ////////////////////////////////////////////////////////////////////////////////
 gulp.task("default", ["usage"], function () {
-
 });
 
 
@@ -20,6 +19,8 @@ gulp.task("default", ["usage"], function () {
 gulp.task(
     "usage",
     function () {
+        "use strict";
+
         var lines = [
             chalk.green("gulp [usage]"),
             "    Show this usage information",
@@ -49,6 +50,8 @@ gulp.task(
 gulp.task(
     "clean",
     function (cb) {
+        "use strict";
+
         var del = require("del"),
             dirsToDelete = [
                 "dist",
@@ -67,6 +70,8 @@ gulp.task(
 ////////////////////////////////////////////////////////////////////////////////
 gulp.task(
     "tslint", function () {
+        "use strict";
+
         var tslint = require("gulp-tslint"),
             tsSources = getTypeScriptSourceGlobs(true, false);
 
@@ -84,6 +89,8 @@ gulp.task(
     "build",
     ["tslint"],
     function () {
+        "use strict";
+
         var outputDir = path.join(__dirname, "dist");
 
         return gulpHelpers.buildTypeScript(
@@ -99,6 +106,7 @@ gulp.task(
     "ut",
     ["tslint"],
     function () {
+        "use strict";
 
         var outDir     = path.join(__dirname, "tmp", "ut");
 
@@ -125,6 +133,7 @@ gulp.task(
     "cukes",
     ["build"],
     function () {
+        "use strict";
 
         var fs = require("node-fs-extra");
 
@@ -156,6 +165,8 @@ gulp.task(
 ////////////////////////////////////////////////////////////////////////////////
 
 function getTypeScriptSourceGlobs(includeSpecs, includeTypings) {
+    "use strict";
+
     var tsSources = ["src/**/*.ts"];
 
     if (!includeSpecs) {
@@ -168,18 +179,19 @@ function getTypeScriptSourceGlobs(includeSpecs, includeTypings) {
     }
 
     return tsSources;
-
 }
 
 // Just like Node's child_process.exec(), but returns a promise.  The promise is is
 // fulfilled (with stdout) when the process exits successfully.  The promise is reject
 // with an Error object otherwise.
 function exec(command, options) {
-    var exec = require("child_process").exec,
+    "use strict";
+
+    var nodeExec = require("child_process").exec,
         child,
         dfd = q.defer();
 
-    exec(command, options, function (err, stdout, stderr) {
+    nodeExec(command, options, function (err, stdout, stderr) {
         if (err) {
             dfd.reject(err);
             return;

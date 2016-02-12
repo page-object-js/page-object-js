@@ -6,6 +6,8 @@ var gulp        = require("gulp"),
 module.exports = {};
 
 module.exports.streamToPromise = function streamToPromise(stream) {
+    "use strict";
+
     var dfd = q.defer();
 
     stream.once("error", function (err) {
@@ -21,6 +23,8 @@ module.exports.streamToPromise = function streamToPromise(stream) {
 
 
 module.exports.buildTypeScript = function buildTypeScript(srcGlobs, jsOutputDir, typingsOutputDir) {
+    "use strict";
+
     var ts           = require('gulp-typescript'),
         tsHelpers    = require('gulpTsHelpers'),
         tsResults,
