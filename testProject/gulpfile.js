@@ -16,7 +16,10 @@ var path        = require("path"),
 gulp.task("build", function () {
     "use strict";
 
-    var outputDir = path.join(__dirname, "dist");
+    var fs = require("node-fs-extra"),
+        outputDir = path.join(__dirname, "dist");
+
+    fs.removeSync(outputDir);
 
     return gulpHelpers.buildTypeScript(
         getTypeScriptSourceGlobs(false, true), outputDir, outputDir);

@@ -3,7 +3,8 @@ var gulp        = require("gulp"),
     sourcemaps  = require("gulp-sourcemaps"),
     path        = require("path"),
     q           = require("q"),
-    chalk       = require('chalk');
+    chalk       = require('chalk'),
+    fs          = require("node-fs-extra");
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -93,6 +94,8 @@ gulp.task(
 
         var outputDir = path.join(__dirname, "dist");
 
+        fs.removeSync(outputDir);
+
         return gulpHelpers.buildTypeScript(
             getTypeScriptSourceGlobs(false, true), outputDir, outputDir);
     }
@@ -108,7 +111,9 @@ gulp.task(
     function () {
         "use strict";
 
-        var outDir     = path.join(__dirname, "tmp", "ut");
+        var outDir = path.join(__dirname, "tmp", "ut");
+
+        fs.removeSync(outDir);
 
         return gulpHelpers.buildTypeScript(
             getTypeScriptSourceGlobs(true, true), outDir, outDir)
@@ -135,13 +140,11 @@ gulp.task(
     function () {
         "use strict";
 
-        var fs = require("node-fs-extra");
-
         //
         // Copy dist folders into testProject as if they were installed
         // using npm.
         //
-        fs.remove("testProject/node_modules/page-object-js");
+        fs.removeSync("testProject/node_modules/page-object-js");
         fs.copySync("dist", "testProject/node_modules/page-object-js/dist");
         fs.copySync("package.json",
             "testProject/node_modules/page-object-js/package.json");
