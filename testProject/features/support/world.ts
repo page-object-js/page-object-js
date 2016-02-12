@@ -1,17 +1,16 @@
-/*
+import * as wd from "selenium-webdriver";
 
-const wd = require('selenium-webdriver');
-//          = require('selenium-webdriver/chrome');
-import {setBrowser} from '../../src/index'
+
+
+import {setBrowser} from "page-object-js";
 
 const driver = new wd.Builder()
                      .forBrowser('chrome')
-                     .setChromeOptions(/!* ... *!/)
                      .build();
 
 setBrowser(driver);
 
-module.exports = function() {
+export = function() {
     this.World.prototype.browser = driver;
 };
-*/
+
