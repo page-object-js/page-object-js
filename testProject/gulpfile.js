@@ -1,7 +1,7 @@
 var path        = require("path"),
     gulp        = require("gulp"),
     q           = require("q"),
-    mergeStream = require('merge-stream'),
+    gulpHelpers = require("gulpHelpers"),
     cucumber    = require('gulp-cucumber');
 
 // todo:  Need to add a build step and it needs to be a prereq for "cukes"
@@ -15,7 +15,7 @@ gulp.task(
     "cukes",
     function () {
 
-        startServer(path.join(__dirname, "features", "sample_pages"))
+        startServer(path.join(__dirname, "src"))
             .then(
                 function (destroyServerFunc) {
 
@@ -26,7 +26,7 @@ gulp.task(
                             'format': 'pretty'
                         }));
 
-                    return streamToPromise(cukeStream)
+                    return gulpHelpers.streamToPromise(cukeStream)
                         .then(destroyServerFunc);
                 }
             );
