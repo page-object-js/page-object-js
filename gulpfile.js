@@ -196,10 +196,12 @@ function exec(command, options) {
 
     nodeExec(command, options, function (err, stdout, stderr) {
         if (err) {
+            console.log(stderr);
             dfd.reject(err);
             return;
         }
 
+        console.log(stdout);
         dfd.resolve(stdout);
     });
 
