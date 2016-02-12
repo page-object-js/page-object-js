@@ -17,12 +17,31 @@ gulp.task("build", function () {
     "use strict";
 
     var fs = require("node-fs-extra"),
-        outputDir = path.join(__dirname, "dist");
+        outputDir = path.join(__dirname, "dist"),
+        featurePromise,
+        htmlPromise,
+        tsPromise;
 
     fs.removeSync(outputDir);
 
-    return gulpHelpers.buildTypeScript(
+    // Copy .feature files
+    featurePromise = gulpHelpers.streamToPromise(
+        gulp.src(["**/*.feature",
+                  "!node_modules/**/*.feature"])
+            .pipe(gulp.dest(outputDir))
+    );
+
+    // Copy .html files.
+    htmlPromise = gulpHelpers.streamToPromise(
+        gulp.src(["**/*.html",
+                  "!node_modules/**/*.html"])
+            .pipe(gulp.dest(outputDir))
+    );
+
+    tsPromise = gulpHelpers.buildTypeScript(
         getTypeScriptSourceGlobs(false, true), outputDir, outputDir);
+
+    return q.all([featurePromise, htmlPromise, tsPromise]);
 });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -32,11 +51,11 @@ gulp.task("cukes", ["build"], function () {
 
     "use strict";
 
-    startServer(path.join(__dirname, "src"))
+    startServer(path.join(__dirname, "dist/src"))
         .then(
             function (destroyServerFunc) {
 
-                var cukeStream = gulp.src('features/*')
+                var cukeStream = gulp.src('dist/features/*')
                     .pipe(cucumber({
                         'steps':   'dist/features/step-definitions/**/*.js',
                         'support': 'dist/features/support/**/*.js',
@@ -59,8 +78,9 @@ function getTypeScriptSourceGlobs(includeSpecs, includeTypings) {
     "use strict";
 
     var tsSources = [
-        "src/**/*.ts",
-        "features/**/*.ts"
+        "**/*.ts",
+        "!node_modules/**/*.ts",
+        "!typings/**/*.ts"          // Remove for now.  Might be re-added later.
     ];
 
     if (!includeSpecs) {
