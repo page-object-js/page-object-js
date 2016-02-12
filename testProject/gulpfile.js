@@ -70,7 +70,6 @@ function getTypeScriptSourceGlobs(includeSpecs, includeTypings) {
     if (includeTypings) {
         tsSources.push("typings/main.d.ts");
         tsSources.push("typings/main/**/*.d.ts");
-        tsSources.push("node_modules/page-object-js/dist/**/*.d.ts");
     }
 
     return tsSources;
