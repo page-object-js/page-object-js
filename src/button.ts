@@ -1,6 +1,5 @@
 
 import {getBrowser} from "./index";
-//const   By      = require('selenium-webdriver').By;
 import * as selwd from "selenium-webdriver";
 const by: typeof selwd.By = selwd.By;
 
