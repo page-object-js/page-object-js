@@ -26,8 +26,8 @@
     "buildOnSave": false,
     "files": [
         "src/browser.ts",
-        "src/builderFactory.spec.ts",
-        "src/BuilderFactory.ts",
+        "src/builderFactoir.spec.ts",
+        "src/builderFactoir.ts",
         "src/button.ts",
         "src/index.ts",
         "src/page.ts",
