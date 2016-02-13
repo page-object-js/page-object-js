@@ -6,7 +6,7 @@ import {setBrowser} from "./browser";
 
 import {Button} from "./button";
 class SamplePage extends Page {
-    public submit: Button = new Button({id: "submit"});
+    public submit: Button = new Button({id: "submit"}, this);
 }
 
 test("on()",  function (t: test.Test):void {
@@ -47,7 +47,6 @@ test("on()",  function (t: test.Test):void {
     // This test doesn't really belong here, move it later.
     t.test("actions return the page instance", function (t: test.Test):void {
         before();
-        console.log(typeof on(SamplePage).submit.visible);
         let result:SamplePage = on(SamplePage).submit.visible();
         t.true(result instanceof SamplePage);
         t.end();

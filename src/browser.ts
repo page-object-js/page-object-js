@@ -8,7 +8,6 @@ export function setBrowser(browser: WebDriver): void {
     theBrowser = browser;
 }
 
-
 export function getBrowser(): WebDriver {
     "use strict";
     return theBrowser;
