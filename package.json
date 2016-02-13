@@ -6,8 +6,8 @@
   "typings": "./dist/index.d.ts",
   "scripts": {
     "test": "gulp ut",
-    "postinstall": "npm --prefix ./testProject install ./testProject",
-    "setup": "npm install -g gulp-cli typings cucumber && npm install && typings install"
+    "postinstall": "npm --prefix ./testProject install ./testProject && typings install",
+    "setup": "npm install -g gulp-cli typings cucumber && npm install"
   },
   "repository": {
     "type": "git",
@@ -55,6 +55,6 @@
   },
   "dependencies": {
     "es6-promise": "^3.0.2",
-    "selenium-webdriver": "^2.48.2"
+    "selenium-webdriver": "^2.52.0"
   }
 }
