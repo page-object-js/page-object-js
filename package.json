@@ -6,6 +6,7 @@
   "typings": "./dist/index.d.ts",
   "scripts": {
     "test": "gulp ut",
+    "postinstall": "npm --prefix ./testProject install ./testProject",
     "setup": "npm install -g gulp-cli typings cucumber && npm install && typings install"
   },
   "repository": {
