@@ -3,5 +3,6 @@
 // node package:
 export {on} from "./builderFactory";
 export {getBrowser, setBrowser} from "./browser";
+export {Page} from "./page";
 export {Button} from "./button";
 export {Span} from "./span";

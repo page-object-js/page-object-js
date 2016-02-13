@@ -30,6 +30,7 @@
         "src/BuilderFactory.ts",
         "src/button.ts",
         "src/index.ts",
+        "src/page.ts",
         "src/person.spec.ts",
         "src/person.ts",
         "src/span.ts",
