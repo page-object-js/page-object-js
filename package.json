@@ -6,11 +6,12 @@
   "typings": "./dist/index.d.ts",
   "scripts": {
     "test": "gulp ut",
+    "postinstall": "npm --prefix ./testProject install ./testProject",
     "setup": "npm install -g gulp-cli typings cucumber && npm install && typings install"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cheezy/page-object.git"
+    "url": "https://github.com/page-object-js/page-object-js.git"
   },
   "contributors": [
     {
@@ -31,9 +32,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kmckee/page-object-js/issues"
+    "url": "https://github.com/page-object-js/page-object-js/issues"
   },
-  "homepage": "https://github.com/kmckee/page-object-js",
+  "homepage": "https://github.com/page-object-js/page-object-js",
   "devDependencies": {
     "chalk": "^1.1.1",
     "del": "^2.2.0",
