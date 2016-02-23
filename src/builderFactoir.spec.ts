@@ -6,7 +6,7 @@ import {setBrowser} from "./browser";
 
 import {Button} from "./button";
 class SamplePage extends Page {
-    public submit: Button = new Button({id: "submit"}, this);
+    public submit: Button<SamplePage> = new Button<SamplePage>({id: "submit"}, this);
 }
 
 test("on()",  function (t: test.Test):void {
