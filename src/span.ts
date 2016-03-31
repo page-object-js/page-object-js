@@ -1,13 +1,8 @@
-import {getBrowser} from "./index";
-import * as selwd from "selenium-webdriver";
-const by: typeof selwd.By = selwd.By;
+import BaseElement from "./base";
+import Locator from "./locator";
 
-export class Span {
-    private _locator: any;
-    constructor(locator: any) {
-        this._locator = locator;
-    }
-    get text(): any {
-        return getBrowser().findElement(by.id(this._locator.id)).getText();  //<== De-promisify
+export class Span extends BaseElement {
+    constructor(locator: Locator) {
+        super(locator);
     }
 }
