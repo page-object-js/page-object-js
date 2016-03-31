@@ -1,3 +1,3 @@
 export default class Locator {
-    id: string;
+    public id: string;
 }
