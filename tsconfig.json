@@ -55,6 +55,6 @@
         "typings/main/definitions/es6-promise/es6-promise.d.ts"
     ],
     "atom": {
-        "rewriteTsconfig": true
+        "rewriteTsconfig": false
     }
 }
