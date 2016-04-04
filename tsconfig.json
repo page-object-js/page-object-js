@@ -28,6 +28,8 @@
         "src/browser.ts",
         "src/builderFactory.spec.ts",
         "src/builderFactory.ts",
+        "src/locator.ts",
+        "src/base.ts",
         "src/button.ts",
         "src/index.ts",
         "src/person.spec.ts",

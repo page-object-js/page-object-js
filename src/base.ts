@@ -4,14 +4,14 @@ const by: typeof selwd.By = selwd.By;
 import {getBrowser} from "./index";
 import Locator from "./locator";
 
-export class BaseElement {
+export default class BaseElement {
     private _locator: Locator;
 
     constructor(locator: Locator) {
         this._locator = locator;
     }
 
-    click(): selwd.promise.Promise<void> {
+    public click(): selwd.promise.Promise<void> {
         return getBrowser().findElement(by.id(this._locator.id)).click();
     }
 
