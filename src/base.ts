@@ -2,8 +2,7 @@ import * as selwd from "selenium-webdriver";
 const by: typeof selwd.By = selwd.By;
 
 import {getBrowser} from "./index";
-import Locator from "./locator";
-import {IIdLocator} from "./locator";
+import Locator, { IIdLocator } from "./locator";
 
 export default class BaseElement {
     private _locator: Locator;
