@@ -3,6 +3,7 @@ const by: typeof selwd.By = selwd.By;
 
 import {getBrowser} from "./index";
 import Locator from "./locator";
+import {IIdLocator} from "./locator";
 
 export default class BaseElement {
     private _locator: Locator;
@@ -12,18 +13,18 @@ export default class BaseElement {
     }
 
     public click(): selwd.promise.Promise<void> {
-        return getBrowser().findElement(by.id(this._locator.id)).click();
+        return getBrowser().findElement(by.id((<IIdLocator>this._locator).id)).click();
     }
 
     get innerHtml(): selwd.promise.Promise<string> {
-        return getBrowser().findElement(by.id(this._locator.id)).getInnerHtml();
+        return getBrowser().findElement(by.id((<IIdLocator>this._locator).id)).getInnerHtml();
     }
 
     get outerHtml(): selwd.promise.Promise<string> {
-        return getBrowser().findElement(by.id(this._locator.id)).getOuterHtml();
+        return getBrowser().findElement(by.id((<IIdLocator>this._locator).id)).getOuterHtml();
     }
 
     get text(): selwd.promise.Promise<string> {
-        return getBrowser().findElement(by.id(this._locator.id)).getText();
+        return getBrowser().findElement(by.id((<IIdLocator>this._locator).id)).getText();
     }
 }
