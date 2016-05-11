@@ -12,18 +12,22 @@ export default class BaseElement {
     }
 
     public click(): selwd.promise.Promise<void> {
-        return getBrowser().findElement(by.id((<IIdLocator>this._locator).id)).click();
+        return this._getElement(getBrowser(), this._locator).click();
     }
 
     get innerHtml(): selwd.promise.Promise<string> {
-        return getBrowser().findElement(by.id((<IIdLocator>this._locator).id)).getInnerHtml();
+        return this._getElement(getBrowser(), this._locator).getInnerHtml();
     }
 
     get outerHtml(): selwd.promise.Promise<string> {
-        return getBrowser().findElement(by.id((<IIdLocator>this._locator).id)).getOuterHtml();
+        return this._getElement(getBrowser(), this._locator).getOuterHtml();
     }
 
     get text(): selwd.promise.Promise<string> {
-        return getBrowser().findElement(by.id((<IIdLocator>this._locator).id)).getText();
+        return this._getElement(getBrowser(), this._locator).getText();
+    }
+
+    private _getElement(browser: selwd.WebDriver, locator: Locator):selwd.WebElement {
+        return browser.findElement(by.id((<IIdLocator>locator).id));
     }
 }
