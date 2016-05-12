@@ -1,5 +1,5 @@
-export interface IClassLocator {
-    class: string;
+export interface IClassNameLocator {
+    className: string;
 }
 
 export interface ICssLocator {
@@ -34,7 +34,7 @@ export interface IXpathLocator {
     xpath: string;
 }
 
-type Locator = IClassLocator | ICssLocator | IIdLocator | IJsLocator |
+type Locator = IClassNameLocator | ICssLocator | IIdLocator | IJsLocator |
     ILinkTextLocator | INameLocator | IPartialLinkTextLocator |
     ITagNameLocator | IXpathLocator;
 
